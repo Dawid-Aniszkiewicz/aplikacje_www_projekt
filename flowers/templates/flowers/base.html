@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Katalog Kwiatów{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'flowers/css/style.css' %}">
+</head>
+<body>
+    <div class="header">
+        <h1>Katalog Kwiatów</h1>
+        <a href="{% url 'flowers:flower-list' %}">Lista kwiatów</a> |
+        <a href="{% url 'flowers:flowers-about' %}">O stronie</a> |
+        <a href="/admin/">Admin</a>
+    </div>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <div class="footer">
+        Dawid Aniszkiewicz 2026
+    </div>
+</body>
+</html>

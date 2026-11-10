@@ -1,0 +1,18 @@
+{% extends 'flowers/base.html' %}
+
+{% block title %}{{ flower.name }}{% endblock %}
+
+{% block content %}
+<a href="{% url 'flowers:flower-list' %}">&larr; Wróć do listy</a>
+
+<h2>{{ flower.name }}</h2>
+<p><i>{{ flower.latin_name }}</i></p>
+
+<p><b>Kategoria:</b> {{ flower.category.name }}</p>
+<p><b>Wysokość:</b> {{ flower.height_cm }} cm</p>
+<p><b>Cena:</b> {{ flower.price }} zł</p>
+<p><b>Dostępny:</b> {% if flower.is_available %}tak{% else %}nie{% endif %}</p>
+
+<h3>Opis</h3>
+<p>{{ flower.description }}</p>
+{% endblock %}

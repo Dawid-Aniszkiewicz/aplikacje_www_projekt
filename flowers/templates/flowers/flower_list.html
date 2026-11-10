@@ -1,0 +1,27 @@
+{% extends 'flowers/base.html' %}
+
+{% block content %}
+<h2>Spis kwiatów od A do Z</h2>
+
+{% regroup flowers by name.0 as letters %}
+
+<p>
+    {% for letter in letters %}
+        <a href="#{{ letter.grouper }}">{{ letter.grouper }}</a>
+    {% endfor %}
+</p>
+
+{% for letter in letters %}
+    <h3 id="{{ letter.grouper }}">{{ letter.grouper }}</h3>
+    <ul>
+        {% for flower in letter.list %}
+            <li>
+                <a href="{% url 'flowers:flower-detail' flower.slug %}"><b>{{ flower.name }}</b></a>
+                <i>({{ flower.latin_name }})</i> - {{ flower.category.name }}
+            </li>
+        {% endfor %}
+    </ul>
+{% empty %}
+    <p>Brak kwiatów.</p>
+{% endfor %}
+{% endblock %}
